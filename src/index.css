@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-ink: #262626;
+  --color-ink-2: #4a4a4a;
+  --color-muted: #727272;
+  --color-faint: #a1a1a1;
+  --color-line: #e8e8e8;
+  --color-line-2: #f2f2f2;
+  --color-wash: #f8f8f8;
+  --color-dots: #e2e2e2;
+
+  --color-brand: #2d9ffe;
+  --color-brand-strong: #0b7fe6;
+  --color-brand-soft: #edf6ff;
+  --color-brand-line: #cbe5ff;
+
+  --color-bad: #e1454b;
+  --color-bad-soft: #fdf0f0;
+  --color-bad-line: #f7d3d4;
+  --color-bad-ink: #a3262b;
+
+  --color-warn: #c98512;
+  --color-warn-soft: #fef6e7;
+  --color-warn-line: #f3ddb0;
+
+  --color-good: #23935f;
+  --color-good-soft: #ebf7f1;
+  --color-good-line: #cbebda;
+  --color-good-ink: #1b6e48;
+
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --animate-rise: rise 0.7s var(--ease-soft) both;
+  --animate-draw: draw 1s cubic-bezier(0.65, 0, 0.25, 1) both;
+  --animate-pop: pop 0.45s var(--ease-soft) both;
+  --animate-slide: slide 0.35s var(--ease-soft);
+  --animate-banner: banner 0.45s var(--ease-soft);
+  --animate-shake: shake 0.45s ease;
+  --animate-ripple: ripple 0.7s ease-out forwards;
+  --animate-fade: fade 0.3s ease both;
+  --animate-flip: flip 0.6s var(--ease-soft);
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  }
+  @keyframes slide {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+  }
+  @keyframes banner {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes shake {
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-3px);
+    }
+    80% {
+      transform: translateX(2px);
+    }
+  }
+  @keyframes ripple {
+    from {
+      transform: scale(0.5);
+      opacity: 1;
+    }
+    to {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes flip {
+    from {
+      transform: rotateX(90deg);
+    }
+  }
+}
+
+@utility bg-dots {
+  background:
+    radial-gradient(circle at 1px 1px, var(--color-dots) 1px, transparent 0) 0 0 / 16px 16px,
+    #fcfcfc;
+}
+
+@utility fade-y {
+  mask-image: linear-gradient(transparent, #000 18px, #000 calc(100% - 18px), transparent);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+@layer base {
+  body {
+    @apply bg-white font-sans text-[13px] leading-normal text-ink antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d6d6d6;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a9a9a9;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  @supports (-moz-appearance: none) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #cfcfcf transparent;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001s !important;
+      transition: none !important;
+    }
+  }
+}
